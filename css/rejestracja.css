@@ -1,0 +1,209 @@
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+body {
+	margin: 0px;
+	font-family: 'Lato', sans-serif;
+	background: url("/phoneBook/img/tlo2.jpg") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	margin-bottom: 20px;
+}
+
+#container {
+	margin-left:auto;
+	margin-right: auto;
+}
+
+#newUser {
+	text-align: center;
+	border-radius: 10px;
+	padding: 50px;
+	-webkit-box-shadow: 3px 10px 30px 5px rgba(0,0,0,0.75);
+	-moz-box-shadow: 3px 10px 30px 5px rgba(0,0,0,0.75);
+	box-shadow: 3px 10px 30px 5px rgba(0,0,0,0.75);
+}
+
+.g-recaptcha {
+    padding: 30px 0 0 10px;
+	transform:scale(0.80);
+    transform-origin:0 0;
+	border-radius: 5px;
+}
+
+#logo {
+	margin: 20px 0 0 100px;
+}
+
+#boxDate {
+	width:430px;
+	margin: 0 auto;
+	padding-top: 20px;
+}
+
+input[type=text],
+input[type=password] {
+	width: 95%;
+	background-color: #efefef;
+	color: #666;
+	border: 2px solid #ddd;
+	border-radius: 5px;
+	font-size: 17px;
+	padding: 10px;
+	box-sizing: border-box;	
+	outline:none;
+	margin-top: 20px;
+}
+
+input[type=text]:focus,
+input[type=password]:focus {
+	-webkit-box-shadow: 0px 0px 10px 2px rgba(220,220,220,0.75);
+	-moz-box-shadow: 0px 0px 10px 2px rgba(220,220,220,0.75);
+	box-shadow: 0px 0px 10px 2px rgba(220,220,220,0.75);
+	border: 2px solid #e2fefd;
+	background-color: white;
+	color: black;
+}
+
+input[type=submit] {
+	width: 95%;
+	background-color: #008080;
+	font-size: 20px;
+	color: white;
+	padding: 15px 10px;
+	margin-top: 40px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	letter-spacing: 2px;
+	outline: none;
+}
+
+input[type=submit]:focus {
+	-webkit-box-shadow: 0px 0px 15px 5px rgba(220,220,220,0.75);
+	-moz-box-shadow: 0px 0px 15px 5px rgba(220,220,220,0.75);
+	box-shadow: 0px 0px 15px 5px rgba(220,220,220,0.75);
+}
+
+input[type=submit]:hover {
+	background-color: #007399;	
+}
+
+#signIn{
+	font-size:20px;
+	font-weight: bold;
+	color:black;
+	letter-spacing: 1px;
+	padding-bottom: 20px;
+}
+
+#mobile {
+	width:150px;
+	height: 150px;
+	position: fixed;
+	right: 50px;
+	bottom: 50px;
+}
+
+#overlay {
+	position:relative;
+	width: 150px;
+	height: 150px;
+}
+
+#overlay #qr {
+	position: absolute;
+	width: 170px;
+	height: 150px;
+	left: -130px;
+	top: -150px;
+	opacity: 0;
+	transition: opacity 0.5s ease-in-out;
+}
+
+#mobile:hover #qr {
+	opacity: 0.9; 
+}
+
+.error {
+	width: 95%;
+	color: red;
+	margin-top:0;
+}
+
+a:link {
+	color: white;
+	text-decoration: none;
+}
+
+a:visited {
+	color: white;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #black;
+}
+
+#footer{
+	position:absolute;
+	text-align: center;
+	width: 100%;
+	bottom:0;
+}
+
+@media screen and (max-width: 450px) {
+	#boxDate {
+		width: 70%;
+		margin-left: 10%;
+	}
+	
+	#newUser {
+		width: 80%;
+	}
+	
+	.g-recaptcha {
+		width: 80%;
+	}
+	
+	#logo {
+		margin-left:5px;
+	}
+	
+	input[type=submit] {
+		width: 80%%;
+		font-size: 15px;
+		padding: 10px 5px;
+		margin-top: 20px;
+		letter-spacing: 1px;
+		
+	}
+	input[type=text],
+	input[type=password] {
+		width: 90%;
+		font-size: 14px;
+		padding: 7px;
+		margin-top: 10px;
+	}
+	
+	#signIn{
+		font-size: 15px;
+	}
+	
+	#mobile {
+		visibility: hidden;
+	}
+	#mobile img {
+		visibility: hidden;
+	}
+	#footer{
+		position: relative;
+		width: 100%;
+		bottom:0;
+		font-size: 12px;
+	}
+}
