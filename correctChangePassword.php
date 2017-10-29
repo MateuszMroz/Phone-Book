@@ -1,10 +1,14 @@
 <?php
 	session_start();
 	
-	if(isset($_SESSION['logIn'])&&($_SESSION['logIn']==true)) {
-		header('Location:mainPanelSite.php');
+	if(!isset($_SESSION['logIn'])) {
+		header('Location:index.php');
 		exit();
 	}
+	
+	if(isset($_SESSION['e_password'])) unset($_SESSION['e_password']);
+	
+	
 ?>
 
 <!DOCTYPE HTML>
@@ -17,7 +21,7 @@
 	<meta name="keywords" content="phone book, książka telefoniczba" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
-	<link rel="stylesheet" href="css/indexStyle_2.css" type="text/css" />
+	<link rel="stylesheet" href="css/welcomeStylee.css" type="text/css" />
 	<meta name="vievport" content="width=device-width,	initial-scale=1.0">
 	
 </head>
@@ -28,27 +32,8 @@
 	
 		<div id="logo"><a href="mainPanelSite.php"><img src="img/logo.png" alt="logo" height="120" width="345"></a></div>
 		
-		<a href="registrationSite.php"><div id="reg">Zarejestruj się</div></a>
-		
 		<div id="boxDate">
-			
-			<div class="login">
-				<form action = "signIn.php" method="post">
-					<div id="signIn">Logowanie: </div>
-					<input type="text" placeholder="e-mail" onfocus="this.placeholder=''" onblur="this.placeholder='e-mail'" name="mail"/>
-					
-					<input type="password" placeholder="hasło" onfocus="this.placeholder=''" onblur="this.placeholder='hasło'" name="user_password"/>
-					
-					<?php
-						if(isset($_SESSION['error'])) echo $_SESSION['error'];
-					?>
-					
-					<div id="signAlt"><a href="registrationSite.php">Stworz nowe konto</a></div>
-					
-					<input type="submit"value="Zaloguj się"/>
-				</form>
-			</div>
-			
+			Hasło zostało zmienione. <a href="mainPanelSite.php">Kliknij</a> żeby przejsć do panelu głownego!
 		</div>
 		
 		<div id="mobile">

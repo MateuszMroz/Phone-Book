@@ -22,8 +22,8 @@
 	<meta name="keywords" content="phone book, książka telefoniczba" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
-	<link rel="stylesheet" href="css/edycjaKontaktu1.css" type="text/css" />
-	<link rel="stylesheet" href="css/fontello.css" type="text/css" />
+	<link rel="stylesheet" href="css/editContactStylee.css" type="text/css" />
+	<link rel="stylesheet" href="css/fontello1.css" type="text/css" />
 	<meta name="vievport" content="width=device-width,	initial-scale=1.0">
 	
 </head>
@@ -32,12 +32,12 @@
 
 	<div id="container">
 	
-		<div id="logo"><a href="panelGlowny.php"><img src="img/logo.png" alt="logo" height="120" width="345"></a></div>
+		<div id="logo"><a href="mainPanelSite.php"><img src="img/logo.png" alt="logo" height="120" width="345"></a></div>
 	
 		<div id="info_user">
 			Zalogowany: </br> 
 			<?php
-				echo $_SESSION['imie']." ".$_SESSION['nazwisko']."</br>";
+				echo $_SESSION['user_name']." ".$_SESSION['user_surname']."</br>"
 			?>
 			<form action="logOut.php">
 				<input type="submit"value="Wyloguj">
@@ -45,29 +45,29 @@
 		</div>
 		
 		<div id="menu">
-			<a href="dodawanieKontaktu.php">
+			<a href="addContactSite.php">
 				<div class="mainBar">
 					<i class="icon-user-plus"></i></br>Dodaj kontakt 	
 				</div>
 			</a>
-			<a href="usuwanieKontaktu.php">
+			<a href="removeContactSite.php">
 				<div class="mainBar">
 					<i class="icon-user-times"></i></br>Usuń kontakt
 				</div>
 			</a>
-			<a href="edycjaKontaktu.php">
+			<a href="editContactSite.php">
 				<div class="mainBar">
 					<i class="icon-edit"></i></br>Edytuj kontakt
 				</div>
 			</a>
-			<a href="kalendarz.php">
+			<a href="calendarSite.php">
 				<div class="mainBar">
 					<i class="icon-calendar"></i></br>Kalendarz
 				</div>
 			</a>
-			<a href="logOut.php">
+			<a href="changePasswordSite.php">
 				<div class="mainBar">
-					<i class="icon-logout"></i></br>Wyloguj
+					<i class="icon-cog"></i></br>Zmień hasło
 				</div>
 			</a>
 		</div>
@@ -86,6 +86,11 @@
 		
 			<div id="emptyBook">
 				<?php
+				if(isset($_SESSION['isEmpty'])){
+					echo $_SESSION['isEmpty'];
+					unset($_SESSION['isEmpty']);
+				}
+				
 				if(isset($_SESSION['noContacts'])){
 					echo $_SESSION['noContacts'];
 					unset($_SESSION['noContacts']);
@@ -130,7 +135,7 @@
 							?>'" <?php echo $surnameInformation[$countContact]; ?> name="editSurname">
 							</br>
 						
-						<input type="text" placeholder="<?php
+						<input type="tel" placeholder="<?php
 							if(isset($_SESSION['cPhoneNumber'])) {
 								echo $_SESSION['cPhoneNumber'][$countContact];
 							}
@@ -141,7 +146,7 @@
 							?>'" <?php echo $numberInformation[$countContact]; ?> name="editPhoneNumber">
 							</br>
 						
-						<input type="text" placeholder="<?php
+						<input type="email" placeholder="<?php
 							if(isset($_SESSION['cMail'])) {
 								echo $_SESSION['cMail'][$countContact];
 							}

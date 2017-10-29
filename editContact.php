@@ -6,6 +6,6 @@
 	
 	$actualUserID = $_SESSION['id'];
 	
-	$contact->findContact($actualUserID, 'edycjaKontaktu.php');
+	$contact->findContact($actualUserID, 'editContactSite.php');
 	
 ?>

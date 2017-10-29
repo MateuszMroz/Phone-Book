@@ -10,28 +10,35 @@
 		$registration = new Registration;
 		
 		$nick = $_POST['nick'];
-		$registration->checkNick($nick, 'rejestracja.php');
+		$registration->checkNick($nick, 'registrationSite.php');
 		
 		$userPassword1=$_POST['user_password1'];
 		$userPassword2=$_POST['user_password2'];
-		$registration->checkPassword($userPassword1, $userPassword2, 'rejestracja.php');
+		$registration->checkPassword($userPassword1, $userPassword2, 'registrationSite.php');
 		$hashUserPassword = password_hash($userPassword1, PASSWORD_DEFAULT);
 		
 		
 		$userName=$_POST['user_name'];
 		$userSurname=$_POST['user_surname'];
-		$registration->checkNameANDSurname($userName, $userSurname, 'rejestracja.php');
+		$registration->checkNameANDSurname($userName, $userSurname, 'registrationSite.php');
 		
 		$mail=$_POST['mail'];
-		$registration->checkMail($mail, 'rejestracja.php');
+		$registration->checkMail($mail, 'registrationSite.php');
 		
 		//$registration->checkReCaptcha();		
-	
+		
+		$_SESSION['reg_nick'] = $nick;
+		$_SESSION['reg_mail'] = $mail;
+		$_SESSION['reg_password_one'] = $userPassword1;
+		$_SESSION['reg_password_two'] = $userPassword2;
+		$_SESSION['reg_name'] = $userName;
+		$_SESSION['reg_surname'] = $userSurname;
+		
 		//sprawdzanie bazy danych	
-		if($registration->checkNick($nick, 'rejestracja.php')&&
-			$registration->checkPassword($userPassword1, $userPassword2, 'rejestracja.php')&&
-			$registration->checkNameANDSurname($userName, $userSurname, 'rejestracja.php')&&
-			$registration->checkMail($mail, 'rejestracja.php')/*&&
+		if($registration->checkNick($nick, 'registrationSite.php')&&
+			$registration->checkPassword($userPassword1, $userPassword2, 'registrationSite.php')&&
+			$registration->checkNameANDSurname($userName, $userSurname, 'registrationSite.php')&&
+			$registration->checkMail($mail, 'registrationSite.php')/*&&
 			$registration->checkReCaptcha()*/) {
 		
 			$datebase = new Datebase();
@@ -60,10 +67,16 @@
 			$insertInto = "INSERT INTO uzytkownicy VALUES (NULL, '$nick', '$hashUserPassword', '$userName', '$userSurname', '$mail')";
 			
 			$datebase->insertIntoDatabase($insertInto);
+			
+			$_SESSION["correct_registration"] = true;
+			
+			header('Location:welcome.php');
+		}
+		else {
+			header('Location:index.php');
 		}
 	
 		$datebase->closeConnect();
 		
-		header('Location:index.php');
 	}
 ?>

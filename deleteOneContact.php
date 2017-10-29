@@ -10,5 +10,5 @@
 	
 	$datebase->queryToDatabase($query);
 	
-	header('Location:usuwanieKontaktu.php');
+	header('Location:removeContactSite.php');
 ?>

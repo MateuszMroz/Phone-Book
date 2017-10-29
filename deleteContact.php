@@ -6,6 +6,6 @@
 	
 	$actualUserID = $_SESSION['id'];
 	
-	$contact->findContact($actualUserID, 'usuwanieKontaktu.php');
+	$contact->findContact($actualUserID, 'removeContactSite.php');
 	
 ?>

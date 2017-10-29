@@ -6,7 +6,7 @@ html {
 body {
 	margin: 0px;
 	font-family: 'Lato', sans-serif;
-	background: url("/phoneBook/img/tlo2.jpg") no-repeat center center fixed;
+	background: url("../img/tlo2.jpg") no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;

@@ -8,8 +8,10 @@
 	}
 	
 	if((!isset($_SESSION['nameContactCheck']))||(!isset($_SESSION['surnameContactCheck']))) {
-		require "deleteContact.php";
+		require "searchInDatabase.php";
 	}
+	
+	
 ?>
 
 <!DOCTYPE HTML>
@@ -22,8 +24,8 @@
 	<meta name="keywords" content="phone book, książka telefoniczba" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
-	<link rel="stylesheet" href="css/usowanieKontaktu.css" type="text/css" />
-	<link rel="stylesheet" href="css/fontello.css" type="text/css" />
+	<link rel="stylesheet" href="css/mainPanelStylee.css" type="text/css" />
+	<link rel="stylesheet" href="css/fontello1.css" type="text/css" />
 	<meta name="vievport" content="width=device-width,	initial-scale=1.0">
 	
 </head>
@@ -31,81 +33,83 @@
 <body>	
 
 	<div id="container">
-		
-		<div id="logo"><a href="panelGlowny.php"><img src="img/logo.png" alt="logo" height="120" width="345"></a></div>
+	
+		<div id="logo"><a href="mainPanelSite.php"><img src="img/logo.png" alt="logo" height="120" width="345"></a></div>
 		
 		<div id="info_user">
 			Zalogowany: </br> 
 			<?php
-				echo $_SESSION['imie']." ".$_SESSION['nazwisko']."</br>";
+				echo $_SESSION['user_name']." ".$_SESSION['user_surname']."</br>";
 			?>
+		
 			<form action="logOut.php">
 				<input type="submit"value="Wyloguj">
 			</form>
 		</div>
 		
 		<div id="menu">
-			<a href="dodawanieKontaktu.php">
+			<a href="addContactSite.php">
 				<div class="mainBar">
 					<i class="icon-user-plus"></i></br>Dodaj kontakt 	
 				</div>
 			</a>
-			<a href="usuwanieKontaktu.php">
+			<a href="removeContactSite.php">
 				<div class="mainBar">
 					<i class="icon-user-times"></i></br>Usuń kontakt
 				</div>
 			</a>
-			<a href="edycjaKontaktu.php">
+			<a href="editContactSite.php">
 				<div class="mainBar">
 					<i class="icon-edit"></i></br>Edytuj kontakt
 				</div>
 			</a>
-			<a href="kalendarz.php">
+			<a href="calendarSite.php">
 				<div class="mainBar">
 					<i class="icon-calendar"></i></br>Kalendarz
 				</div>
 			</a>
-			<a href="logOut.php">
+			<a href="changePasswordSite.php">
 				<div class="mainBar">
-					<i class="icon-logout"></i></br>Wyloguj
+					<i class="icon-cog"></i></br>Zmień hasło
 				</div>
 			</a>
 		</div>
 		
 		<div id="search">
-			<form action="deleteContact.php" method="post">
+			<form action="searchInDatabase.php" method="post">
 				<input type="text" placeholder="imię" onfocus="this.placeholder=''" onblur="this.placeholder='imię'" name="nameContact">
 				
 				<input type="text" placeholder="nazwisko" onfocus="this.placeholder=''" onblur="this.placeholder='nazwisko'" name="surnameContact">
 				
-				<input type="submit"value="Szukaj">
+				<input type="submit" value="Szukaj">
 			</form>
 		</div>
 		
 		<div id="contact">
+		
 			<div id="emptyBook">
 				<?php
+				if(isset($_SESSION['isEmpty'])){
+					echo $_SESSION['isEmpty'];
+					unset($_SESSION['isEmpty']);
+				}
+				
 				if(isset($_SESSION['noContacts'])){
 					echo $_SESSION['noContacts'];
 					unset($_SESSION['noContacts']);
 				}
 				?>
 			</div>
-
+			
 			<?php
 				$countContact=0;
 				while($countContact<$_SESSION['cContact']){
-				$IDInformation[$countContact]=$_SESSION['cID'][$countContact]
 			?>
-				
+	
 				<div id="all_user_information">
 					<div id="user_photo"><img src="img/user.png" alt="ikona usera" height="250" width="250"></div>
 					<div id="contact_information">
-						
-						<?php
-						$IDInformation[$countContact]=$_SESSION['cID'][$countContact];
-						?>
-						
+					
 						<div class="contact_data">
 							<?php
 							if(isset($_SESSION['cName'])) {
@@ -142,28 +146,18 @@
 							?>
 						</div>
 						
-						<div id="contactNote">
-							<div class="contact_data">
-								<?php
-								if(isset($_SESSION['cNote'])) {
-									echo $_SESSION['cNote'][$countContact];
-									unset($_SESSION['cNote'][$countContact]);
-								}
-								?>
-							</div>
-						</div>
-						
 					</div>
 					
-					<div id="button">
-						<form action="deleteOneContact.php" method="post">
-							<input type="hidden" name="id" value="<?php echo $IDInformation[$countContact]; ?>">
-							<input type="submit" value="Usuń kontakt"> </br>
-						</form>
+					<div id="further_information">
+							<?php
+							if(isset($_SESSION['cNote'])) {
+								echo $_SESSION['cNote'][$countContact];
+								unset($_SESSION['cNote'][$countContact]);
+							}
+							?>
 					</div>
 					
 				</div>
-				
 				
 			<?php
 				$countContact++;
@@ -171,6 +165,7 @@
 				unset($_SESSION['nameContactCheck']);
 				unset($_SESSION['surnameContactCheck']);
 			?>
+	
 		</div>
 		
 		<div id="mobile">

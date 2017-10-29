@@ -36,6 +36,6 @@
 		$datebase->queryToDatabase($query);
 	}
 	
-	header('Location:edycjaKontaktu.php');
+	header('Location:editContactSite.php');
 
 ?>

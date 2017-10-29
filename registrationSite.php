@@ -12,7 +12,7 @@
 	<meta name="keywords" content="phone book, książka telefoniczba" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
-	<link rel="stylesheet" href="css/rejestracja.css" type="text/css" />
+	<link rel="stylesheet" href="css/registrationStylee.css" type="text/css" />
 	<meta name="vievport" content="width=device-width,	initial-scale=1.0">
 	<script src='https://www.google.com/recaptcha/api.js'></script>
 	
@@ -28,11 +28,16 @@
 				
 			<div id="newUser">
 			
-				<form action="zarejestruj.php" method="post">
+				<form action="signUp.php" method="post">
 				
 					<div id="signIn">Wprowadź swoje dane: </div>
 					
-					<input type="text" placeholder="nick" onfocus="this.placeholder=''" onblur="this.placeholder='nick'" name="nick">
+					<input type="text" placeholder="nick" onfocus="this.placeholder=''" onblur="this.placeholder='nick'" value = "<?php
+						if(isset($_SESSION['reg_nick'])) {
+							echo $_SESSION['reg_nick'];
+							unset($_SESSION['reg_nick']);
+						}
+					?>" name="nick">
 						<div class="error">
 							<?php
 								if(isset($_SESSION['e_nick'])) {
@@ -41,7 +46,12 @@
 								}
 							?>
 						</div>
-					<input type="password" placeholder="hasło" onfocus="this.placeholder=''" onblur="this.placeholder='hasło'" name="user_password1">
+					<input type="password" placeholder="hasło" onfocus="this.placeholder=''" onblur="this.placeholder='hasło'" value = "<?php
+						if(isset($_SESSION['reg_password_one'])) {
+							echo $_SESSION['reg_password_one'];
+							unset($_SESSION['reg_password_one']);
+						}
+					?>"name="user_password1">
 					
 						<div class="error">
 							<?php
@@ -52,9 +62,19 @@
 							?>
 						</div>
 					
-					<input type="password" placeholder="powtórz hasło" onfocus="this.placeholder=''" onblur="this.placeholder='powtórz hasło'" name="user_password2">
+					<input type="password" placeholder="powtórz hasło" onfocus="this.placeholder=''" onblur="this.placeholder='powtórz hasło'" value = "<?php
+						if(isset($_SESSION['reg_password_two'])) {
+							echo $_SESSION['reg_password_two'];
+							unset($_SESSION['reg_password_two']);
+						}
+					?>"name="user_password2">
 					
-					<input type="text" placeholder="imię" onfocus="this.placeholder=''" onblur="this.placeholder='imię'" name="user_name">
+					<input type="text" placeholder="imię" onfocus="this.placeholder=''" onblur="this.placeholder='imię'" value = "<?php
+						if(isset($_SESSION['reg_name'])) {
+							echo $_SESSION['reg_name'];
+							unset($_SESSION['reg_name']);
+						}
+					?>"name="user_name">
 					
 						<div class="error">
 							<?php
@@ -65,7 +85,12 @@
 							?>
 						</div>
 					
-					<input type="text" placeholder="nazwisko" onfocus="this.placeholder=''" onblur="this.placeholder='nazwisko'" name="user_surname">
+					<input type="text" placeholder="nazwisko" onfocus="this.placeholder=''" onblur="this.placeholder='nazwisko'" value = "<?php
+						if(isset($_SESSION['reg_surname'])) {
+							echo $_SESSION['reg_surname'];
+							unset($_SESSION['reg_surname']);
+						}
+					?>"name="user_surname">
 					
 						<div class="error">
 							<?php
@@ -76,7 +101,12 @@
 							?>
 						</div>
 					
-					<input type="text" placeholder="e-mail" onfocus="this.placeholder=''" onblur="this.placeholder='e-mail'" name="mail">
+					<input type="text" placeholder="e-mail" onfocus="this.placeholder=''" onblur="this.placeholder='e-mail'" value = "<?php
+						if(isset($_SESSION['reg_mail'])) {
+							echo $_SESSION['reg_mail'];
+							unset($_SESSION['reg_mail']);
+						}
+					?>"name="mail">
 					
 						<div class="error">
 							<?php

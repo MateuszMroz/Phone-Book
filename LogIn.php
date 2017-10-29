@@ -23,22 +23,22 @@
 						
 						$_SESSION['id'] = $row['id'];
 						$_SESSION['nick'] = $row['nick'];
-						$_SESSION['imie'] = $row['imie'];
-						$_SESSION['nazwisko'] = $row['nazwisko'];
+						$_SESSION['user_name'] = $row['imie'];
+						$_SESSION['user_surname'] = $row['nazwisko'];
 						$_SESSION['email'] = $row['email'];
 						
 						unset($_SESSION['error']);
 						
 						$result->free_result();
-						header('Location:panelGlowny.php');
+						header('Location:mainPanelSite.php');
 					}
 					else {
-						$_SESSION['error']='<span style="color:red">Nieprawidłowy aaa login lub haslo!</span>';
+						$_SESSION['error']='<span style="color:red">Nieprawidłowy login lub haslo!</span>';
 						header("Location: index.php");
 					}
 				}
 				else {
-					$_SESSION['error']='<span style="color:red">Nieprawidłowy bbb login lub haslo!</span>';
+					$_SESSION['error']='<span style="color:red">Nieprawidłowy login lub haslo!</span>';
 					header("Location: index.php");
 				}
 				

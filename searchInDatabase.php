@@ -6,6 +6,6 @@
 	
 	$actualUserID = $_SESSION['id'];
 	
-	$contact->findContact($actualUserID, 'panelGlowny.php');
+	$contact->findContact($actualUserID, 'mainPanelSite.php');
 	
 ?>

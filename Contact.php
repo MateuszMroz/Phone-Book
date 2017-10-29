@@ -45,28 +45,31 @@
 					
 				header('Location:' . $localization);
 			
-				}
+			}
+		
+			else if((isset($_POST['nameContact']) && empty($_POST['nameContact']))||(isset($_POST['surnameContact']) && empty($_POST['surnameContact']))) {
+				header('Location:' . $localization);
+			}
 				
-				else if((isset($_POST['nameContact']) && empty($_POST['nameContact']))||(isset($_POST['surnameContact']) && empty($_POST['surnameContact']))) {
-					header('Location:' . $localization);
-				}
+			else {
 				
-				else {
-					
-					$queryAll = "SELECT * FROM kontakty WHERE uzytkownikID='$actualUserID' ORDER BY nazwisko";
-				
-					$contacts=$search->findContact($queryAll, $datebase);
-				
-					$viewContact->showContact($contacts);
-					
-					$datebase->closeConnect();
-				}
+				$queryAll = "SELECT * FROM kontakty WHERE uzytkownikID='$actualUserID' ORDER BY nazwisko";
+			
+				$contacts=$search->findContact($queryAll, $datebase);
+			
+				$viewContact->showContact($contacts);
 				
 			}
+				
+		}
+		else if((isset($_POST['nameContact']) && empty($_POST['nameContact']))||(isset($_POST['surnameContact']) && empty($_POST['surnameContact'])) && $countContact==0) {
+				header('Location:' . $localization);
+		}
 		else {
 			$_SESSION['isEmpty']="Bark kontaktów! Kliknij Dodaj kontakt, żeby wprowadzić swój pierwszy kontakt!";
-			$datebase->closeConnect();
 		}
+		
+		$datebase->closeConnect();
 	}
 }
 

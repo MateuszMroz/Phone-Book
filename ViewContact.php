@@ -26,9 +26,9 @@
 			$arrNote= array();
 			$_SESSION['cNote']=$arrNote;
 			
-			if($contact==0){
-				header('Location:panelGlowny.php');
-			}
+			//if($contact==0){
+			//	header('Location:panelGlowny.php');
+			//}
 			
 			foreach($contact as $data) {
 				

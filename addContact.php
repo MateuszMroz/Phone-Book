@@ -19,6 +19,6 @@
 	$datebase->insertIntoDatabase($insertNewContact);
 	
 	$datebase->closeConnect();
-	header('Location:panelGlowny.php');
+	header('Location:mainPanelSite.php');
 	
 ?>
